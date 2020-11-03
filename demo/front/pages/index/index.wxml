@@ -1,0 +1,75 @@
+<!-- index.wxml -->
+<view class="mpage {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px;" >
+    <view class="search">
+      <view catchtap="handlerAvatarTap" class="avatar">
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="search-wrapper {{show_search_back?'search-wrapper-blue':''}}">
+        <view class="search-button" bindtap="click_search">
+          <view class="iconfont icon-sousuo"></view>
+          搜索活动
+        </view>
+      </view>
+      <view bindtap='addressChoose' class="avatar_r">
+        <image src="/static/images/map7.png"></image>
+      </view>
+    </view>
+
+
+
+
+    <!--选择位置消息-->
+    <view class="activities">
+      <view class="subtitle">
+        <image src="/static/images/ic_activity.png" mode="aspectFit" />
+        <text>选择位置消息</text>
+        <space/>
+        <button bindtap="refresh">点击刷新</button>
+      </view>
+      
+
+
+
+
+
+
+      <scroll-view scroll-y='true' style='height:400rpx'>
+      <view class="newslist" wx:for="{{newsList}}" wx:key="id">
+        <view class="picture" wx:if="{{item.picture!='0'}}">
+          <image src="{{item.picture}}" mode='aspectFit'></image>
+        </view>
+        <view class="picture" wx:if="{{item.picture=='0'}}">
+          <image src="/static/images/ic_jwc.png" mode='aspectFit'></image>
+        </view>
+        <view class='news'>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+      </scroll-view>
+    </view>
+
+
+    <!--当前位置消息-->
+    <view class="activities">
+      <view class="subtitle">
+        <image  src="/static/images/ic_activity.png" mode="aspectFit" />
+        <text>当前位置消息</text>
+        <space/>
+        <button bindtap="refresh">点击刷新</button>
+      </view>
+      <scroll-view scroll-y='true' style='height:400rpx'>
+      <view class="newslist" wx:for="{{localnewsList}}" wx:key="text">
+        <view class="picture" wx:if="{{item.picture!='0'}}">
+          <image src="{{item.picture}}" mode='aspectFit'></image>
+        </view>
+        <view class="picture" wx:if="{{item.picture=='0'}}">
+          <image src="/static/images/ic_jwc.png" mode='aspectFit'></image>
+        </view>
+        <view class='news'>
+          <text>{{item.text}}</text>
+        </view>
+      </view>
+      </scroll-view>
+
+    </view>
+</view>
