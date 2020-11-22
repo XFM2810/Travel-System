@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "0bafae36-7a8c-4f21-8800-0245a4b96204",
+		"name": "lvtu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "攻略",
+			"item": [
+				{
+					"name": "发布攻略",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":1,\r\n    \"strategyName\":\"武汉三日游\",\r\n    \"strategyContent\":\"三天的旅程很好\",\r\n    \"strategyWay\":\"武大，华科，东湖，武汉大桥\",\r\n    \"strategyPicture\":\"sad\",\r\n    \"isShow\":1,\r\n    \"city\":\"武汉\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/releaseStrategy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"releaseStrategy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改攻略",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"strategyId\":4,\r\n    \"strategyName\":\"武汉三日游\",\r\n    \"strategyContent\":\"三天的旅程很好\",\r\n    \"strategyWay\":\"武大，华科，东湖，武汉大桥\",\r\n    \"strategyPicture\":\"1d\",\r\n    \"isShow\":1,\r\n    \"city\":\"武汉\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/updateStrategy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"updateStrategy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除攻略",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/deleteStrategy?strategyIds=6,7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"deleteStrategy"
+							],
+							"query": [
+								{
+									"key": "strategyIds",
+									"value": "6,7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "隐藏攻略",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/hideStrategy?strategyId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hideStrategy"
+							],
+							"query": [
+								{
+									"key": "strategyId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "显示攻略",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/showStrategy?strategyId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"showStrategy"
+							],
+							"query": [
+								{
+									"key": "strategyId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取攻略列表(依据所在城市)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyListByAddress?city=武汉&currentPage=1&pageSize=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyListByAddress"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "武汉"
+								},
+								{
+									"key": "currentPage",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取攻略列表(用户个人发布)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyListOfUserRelease?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyListOfUserRelease"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取攻略列表(用户个人收藏)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyListOfUserCollection?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyListOfUserCollection"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取攻略列表(排行榜：前15)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyHotList?city=武汉",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyHotList"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "武汉"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取攻略详细信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyInfo?strategyId=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyInfo"
+							],
+							"query": [
+								{
+									"key": "strategyId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "评论",
+			"item": [
+				{
+					"name": "获取攻略评论",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/getStrategyAppraiseListById?strategyId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getStrategyAppraiseListById"
+							],
+							"query": [
+								{
+									"key": "strategyId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取我的评论",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://lanproxy.biodwhu.cn:9072/getStrategyAppraiseListOfUser?userId=2",
+							"protocol": "http",
+							"host": [
+								"lanproxy",
+								"biodwhu",
+								"cn"
+							],
+							"port": "9072",
+							"path": [
+								"getStrategyAppraiseListOfUser"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布评价",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":2,\r\n    \"strategyId\":1,\r\n    \"content\":\"很不错\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/releaseStrategyAppraise",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"releaseStrategyAppraise"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除评论",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://lanproxy.biodwhu.cn:9072/deleteStrategyAppraise?userId=2&appraiseId=3",
+							"protocol": "http",
+							"host": [
+								"lanproxy",
+								"biodwhu",
+								"cn"
+							],
+							"port": "9072",
+							"path": [
+								"deleteStrategyAppraise"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "appraiseId",
+									"value": "3"
+								}
+							]
+						},
+						"description": "首先判断该评论的评论人是否为发出删除申请的用户"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
