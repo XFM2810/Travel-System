@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvtu.mapper.MatMapper">
+    <resultMap id="BaseResultMap" type="com.lvtu.entity.Mat">
+        <id column="mat_id" jdbcType="INTEGER" property="matId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="mat_name" jdbcType="VARCHAR" property="matName"/>
+        <result column="mat_content" jdbcType="VARCHAR" property="matContent"/>
+        <result column="mat_place" jdbcType="VARCHAR" property="matPlace"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    mat_id, user_id, mat_name, mat_content, mat_place, create_time, update_time
+  </sql>
+    <select id="getMatchList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        mat_id,user_id,mat_name,mat_place,create_time
+        from mat
+        <where>
+            <if test="flag==0">
+                and user_id=#{userId,jdbcType=INTEGER}
+            </if>
+            <if test="flag==1">
+                and mat_id in (select mat_id from mat_reply where user_id = #{userId,jdbcType=INTEGER} and status = 1)
+            </if>
+            <if test="flag==2">
+                and mat_place=#{city,jdbcType=VARCHAR}
+            </if>
+            <if test="flag==3">
+                and mat_content like #{keyword,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mat
+        where mat_id = #{matId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mat
+    where mat_id = #{matId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.lvtu.entity.Mat">
+    insert into mat (mat_id, user_id, mat_name, 
+      mat_content, mat_place, create_time, 
+      update_time)
+    values (#{matId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{matName,jdbcType=VARCHAR}, 
+      #{matContent,jdbcType=VARCHAR}, #{matPlace,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.lvtu.entity.Mat">
+        insert into mat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="matId != null">
+                mat_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="matName != null">
+                mat_name,
+            </if>
+            <if test="matContent != null">
+                mat_content,
+            </if>
+            <if test="matPlace != null">
+                mat_place,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="matId != null">
+                #{matId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="matName != null">
+                #{matName,jdbcType=VARCHAR},
+            </if>
+            <if test="matContent != null">
+                #{matContent,jdbcType=VARCHAR},
+            </if>
+            <if test="matPlace != null">
+                #{matPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lvtu.entity.Mat">
+        update mat
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="matName != null">
+                mat_name = #{matName,jdbcType=VARCHAR},
+            </if>
+            <if test="matContent != null">
+                mat_content = #{matContent,jdbcType=VARCHAR},
+            </if>
+            <if test="matPlace != null">
+                mat_place = #{matPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where mat_id = #{matId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lvtu.entity.Mat">
+    update mat
+    set user_id = #{userId,jdbcType=INTEGER},
+      mat_name = #{matName,jdbcType=VARCHAR},
+      mat_content = #{matContent,jdbcType=VARCHAR},
+      mat_place = #{matPlace,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where mat_id = #{matId,jdbcType=INTEGER}
+  </update>
+</mapper>

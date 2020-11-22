@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvtu.mapper.TourimStrategyAppraiseMapper">
+    <resultMap id="BaseResultMap" type="com.lvtu.entity.TourimStrategyAppraise">
+        <id column="appraise_id" jdbcType="INTEGER" property="appraiseId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="strategy_id" jdbcType="INTEGER" property="strategyId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    appraise_id, user_id, strategy_id, content, create_time
+  </sql>
+    <select id="getStrategyAppraiseList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tourim_strategy_appraise
+        <where>
+            <if test="flag==0">
+                and strategy_id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="flag==1">
+                and user_id = #{id,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    <select id="getStrategyAppraiseUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select
+        user_id
+        from tourim_strategy_appraise
+        where appraise_id=#{appraiseId,jdbcType=INTEGER}
+    </select>
+    <insert id="insertSelective" parameterType="com.lvtu.entity.TourimStrategyAppraise">
+        insert into tourim_strategy_appraise
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="appraiseId != null">
+                appraise_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="strategyId != null">
+                strategy_id,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="appraiseId != null">
+                #{appraiseId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="strategyId != null">
+                #{strategyId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tourim_strategy_appraise
+    where appraise_id = #{appraiseId,jdbcType=INTEGER}
+  </delete>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.lvtu.entity.TourimStrategyAppraise">
+        update tourim_strategy_appraise
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="strategyId != null">
+                strategy_id = #{strategyId,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where appraise_id = #{appraiseId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lvtu.entity.TourimStrategyAppraise">
+    update tourim_strategy_appraise
+    set user_id = #{userId,jdbcType=INTEGER},
+      strategy_id = #{strategyId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where appraise_id = #{appraiseId,jdbcType=INTEGER}
+   </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tourim_strategy_appraise
+        where appraise_id = #{appraiseId,jdbcType=INTEGER}
+    </select>
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lvtu.mapper.MatReplyMapper">
+    <resultMap id="BaseResultMap" type="com.lvtu.entity.MatReply">
+        <id column="reply_id" jdbcType="INTEGER" property="replyId"/>
+        <result column="mat_id" jdbcType="INTEGER" property="matId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    reply_id, mat_id, user_id, reply_content, create_time, status
+  </sql>
+    <select id="getReplyList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mat_reply
+        <where>
+            <if test="flag==0">
+                and user_id=#{id,jdbcType=INTEGER}
+            </if>
+            <if test="flag==1">
+                and mat_id=#{id,jdbcType=INTEGER} and status=1
+            </if>
+            <if test="flag==2">
+                and mat_id=#{id,jdbcType=INTEGER} and status=0
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mat_reply
+        where reply_id = #{replyId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mat_reply
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.lvtu.entity.MatReply">
+    insert into mat_reply (reply_id, mat_id, user_id, 
+      reply_content, create_time, status
+      )
+    values (#{replyId,jdbcType=INTEGER}, #{matId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{replyContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.lvtu.entity.MatReply">
+        insert into mat_reply
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="replyId != null">
+                reply_id,
+            </if>
+            <if test="matId != null">
+                mat_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="replyContent != null">
+                reply_content,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="replyId != null">
+                #{replyId,jdbcType=INTEGER},
+            </if>
+            <if test="matId != null">
+                #{matId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="replyContent != null">
+                #{replyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lvtu.entity.MatReply">
+        update mat_reply
+        <set>
+            <if test="matId != null">
+                mat_id = #{matId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="replyContent != null">
+                reply_content = #{replyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+        </set>
+        where reply_id = #{replyId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lvtu.entity.MatReply">
+    update mat_reply
+    set mat_id = #{matId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      reply_content = #{replyContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+</mapper>
