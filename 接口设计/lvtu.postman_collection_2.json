@@ -513,7 +513,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\":4,\r\n    \"matName\":\"士大夫\",\r\n    \"matContent\":\"由于项目是前后端分离，因此后台\",\r\n    \"matPlace\":\"武汉\"\r\n}",
+							"raw": "{\r\n    \"userId\":1,\r\n    \"matName\":\"士大夫\",\r\n    \"matContent\":\"由于项目是前后端分离，因此后台\",\r\n    \"matPlace\":\"武汉\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -521,14 +521,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cancelCollection",
+							"raw": "http://localhost:8080/releaseMatch",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cancelCollection"
+								"releaseMatch"
 							]
 						}
 					},
@@ -693,7 +693,29 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8080/getMatchByKeyword?keyword=由于项目是&currentPage=1&pageSize=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"getMatchByKeyword"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "由于项目是"
+								},
+								{
+									"key": "currentPage",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "5"
+								}
+							]
 						}
 					},
 					"response": []
@@ -788,12 +810,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/getReplyListOfUser?uerId=1",
+							"raw": "http://lanproxy.biodwhu.cn:9072/getReplyListOfUser?uerId=1",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"lanproxy",
+								"biodwhu",
+								"cn"
 							],
-							"port": "8080",
+							"port": "9072",
 							"path": [
 								"getReplyListOfUser"
 							],
@@ -813,12 +837,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/getReplyListPassed?matId=4",
+							"raw": "http://lanproxy.biodwhu.cn:9072/getReplyListPassed?matId=4",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"lanproxy",
+								"biodwhu",
+								"cn"
 							],
-							"port": "8080",
+							"port": "9072",
 							"path": [
 								"getReplyListPassed"
 							],
