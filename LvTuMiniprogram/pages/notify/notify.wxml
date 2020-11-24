@@ -1,0 +1,47 @@
+<view class="top-tab  flex-tab">
+<view class=" flex-wrp ">
+  <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+    {{itemName}}
+  </view>
+</view>
+
+<form  bindsubmit="formSubmit">  
+    <view class="search flex-wrp">
+    <view class="search-left flex-item">
+          <image src="../../images/search.png"></image>
+          <input placeholder="搜索攻略" name="find"  placeholder-class="search-placeholder" form-type="submit"/>
+      </view>
+      <view class="search-right flex-item" bindtap="upper">
+          <button class='find' form-type="submit" style="width:50px;height:65rpx"> 查询</button>
+      </view>
+    </view>
+  </form>
+
+</view>
+<scroll-view scroll-y="true" class="container notify withtab" style=" margin: 190rpx 0 0 0;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+ 
+<block wx:for="{{list}}" wx:key="list">
+<navigator url="../lvtudetail/lvtudetail?id={{item.matId}}" open-type="navigate" >
+ <view class="feed-item"> 
+  <view class="title">{{item.matName}}</view>
+  <view class="pic"> <!-- 图片 -->
+  <image style="width:30%;height:69px;" src="{{item.pic}}"/>
+  <view class="info">
+    <view class="desc">
+       <text>{{item.commentNumber}}条回复</text>
+       <text>{{item.createTime}}</text>
+       <text>发起人：用户{{item.userId}}</text>
+    <view class="opr">
+
+    </view>
+  </view>
+  </view>
+</view>
+<view class="hr"></view>
+ </view>
+</navigator>
+</block>
+
+ 
+</scroll-view>

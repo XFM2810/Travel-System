@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="top-tab search flex-wrp">
+      <view class="search-left flex-item">
+          <image src="../../images/search.png"></image>
+          <input placeholder="搜索攻略" placeholder-class="search-placeholder"/>
+      </view>
+      <view class="search-right flex-item" bindtap="upper">
+          <image src="../../images/lighting.png"></image>
+      </view>
+    </view>
+
+<scroll-view scroll-y="true"  style=" margin: 60px 0 0 0;" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+    <block wx:for="{{tips}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+        <view class="feed-item">
+            <view class="feed-source">
+                <a class="">
+                    <view class="avatar">
+                        <image src="{{item.strategy_picture}}"></image>
+                    </view>
+                    <text>{{item.strategyName}}</text>
+                </a>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content" bindtap="bindItemTap" id="{{item.strategyId}}">
+                <view class="question" >
+                    <a class="question-link">
+                        <text>{{item.strategyContent}}</text>
+                    </a>
+                </view>
+              <!--
+<view class="answer-body">
+                    <view bindtap="bindItemTap">
+                        <text class="answer-txt" aid="{{answer_id}}">{{item.answer_ctnt}}</text>
+                    </view>
+                    <view class="answer-actions" bindtap="bindItemTap">
+                        <view class="like dot">
+                            <a>{{item.good_num}} 点赞 </a>
+                        </view>
+                        <view class="comments dot">
+                            <a>{{item.comment_num}} 收藏 </a>
+                        </view>
+                    </view>
+                </view>
+              -->  
+            </view>
+        </view>
+    </block>
+</scroll-view>
+</view>

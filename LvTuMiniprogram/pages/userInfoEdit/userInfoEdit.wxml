@@ -1,0 +1,19 @@
+
+<view class="container more wt">
+  <view class="user flex-wrp" bindtap="bindUserInfo">
+    <view class="avatar flex-item">
+      <image class="userinfo-avatar" src="{{userInfo.icon}}" background-size="cover"></image>
+    </view>
+    <view class="user-info flex-item">
+      <text class="userinfo-nickname">微信昵称{{userInfo.user_name}}</text>
+      <text class="edit">个性签名</text>
+      <text class="edit">手机号</text>
+    </view>
+  </view>
+ <view >
+     <view class=" button"> 修改</view>
+</view>
+    
+  </view>
+ 
+

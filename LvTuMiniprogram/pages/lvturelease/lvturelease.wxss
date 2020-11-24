@@ -1,0 +1,19 @@
+/* pages/lvturelease/lvturelease.wxss */
+page{
+  width:750rpx;
+  height:100%;
+}
+
+.content{
+  height:700rpx;
+}
+
+  button {
+    width: 80%;
+    margin-top: 300rpx;
+    background-color:#ffcc66;
+    color: white;
+    border-radius: 98rpx; 
+  }
+
+ 

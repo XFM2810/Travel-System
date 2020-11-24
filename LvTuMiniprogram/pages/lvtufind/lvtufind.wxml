@@ -1,0 +1,23 @@
+<!--pages/lvtufind/lvtufind.wxml-->
+<view wx:for="{{list}}" wx:key="list">
+<navigator url="../lvtudetail/lvtudetail?id={{item.id}}" open-type="navigate" >
+  <view class="title">{{item.matName}}</view>
+  <view class="pic">
+  <image style="width:30%;height:69px;" src="{{item.pic}}"/>
+
+  <view class="info">
+    <view class="desc">
+
+      <text>{{item.commentNumber}}条回复</text>
+      <text>{{item.createTime}}</text>
+      <text>发起人：用户{{item.matId}}</text>
+
+    <view class="opr">
+
+    </view>
+  </view>
+  </view>
+</view>
+<view class="hr"></view>
+</navigator>
+</view>
