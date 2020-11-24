@@ -1,0 +1,29 @@
+
+<view class="container more">
+  <form bindsubmit="submitTip">
+    <view class="user flex-wrp">
+    <view class="avatar flex-item">
+      <text class="userinfo-avatar">标题</text>
+    </view>
+    <view class="user-info flex-item">
+      <input class="edit" name="strategyName"/>
+    </view>
+  </view>
+  <view class="user flex-wrp">
+    <view class="avatar flex-item">
+      <text class="userinfo-avatar">正文</text>
+    </view>
+    <view class="user-info flex-item">
+      <textarea class="edit" name="strategyContent"></textarea>
+    </view>
+  </view>
+  <view class="user flex-wrp">
+    <view class="flex-item pd10">
+      <button form-type="submit" type="primary">保存</button>
+    </view>
+    <view class="flex-item pd10">
+      <button form-type="reset" type="warn">取消</button>
+    </view>
+  </view>
+  </form>
+</view>

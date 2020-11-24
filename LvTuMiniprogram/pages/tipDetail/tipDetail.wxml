@@ -1,0 +1,44 @@
+<!--tipDetail.wxml-->
+<view class="container">
+    <view class="question" bindtap="toQuestion">
+        <text class="question-title">{{tip.strategyName}}</text>
+    </view>
+    <view class="tipDetail-wrp">
+        <view class="bg-half"></view>
+        <view class="tipDetail flex-wrp">
+            <view class="avatar flex-item">
+                <image src="../../images/icon1.jpeg"></image>
+            </view>
+            <view class="tipDetail-info flex-item">
+                <text class="tipDetail-name">Rebecca</text>
+                <text class="tipDetail-des">WEB前端*不靠谱天气预报员*想做代码小仙女</text>
+            </view>
+          <!--  <view class="follow flex-item">
+                <text>十 关注</text>
+            </view>--> 
+        </view>
+    </view>
+    <view class="tipDetail-content">
+        <text>{{tip.strategyContent}}</text>
+        <image src="../../images/1444983318907-_DSC1826.jpg"></image>
+        <text>攻略路线：{{tip.strategyWay}}</text>
+    </view>
+
+    <view class="tipDetail-footer flex-wrp">
+        <view class="operation-wrp flex-item">
+            <view class="operation flex-wrp flex-tab">
+                <view class="operation-btn flex-item" bindtap="writeAppraise" id="{{tip.strategyId}}">
+                    <image src="../../images/comment.png"></image>
+                </view>
+                <view class="operation-btn flex-item" bindtap="collection" id="{{tip.strategyId}}">
+                    <image src="../../images/star2.png"></image>
+                 </view>
+              
+            </view>
+        </view>
+
+
+
+    </view>
+</view>
+

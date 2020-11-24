@@ -1,0 +1,11 @@
+<!--pages/lvtureupdate/lvtureupdate.wxml-->
+<text >\n</text>
+<form bindsubmit="formSubmit" id='1' bindreset="formReset">    
+<i-input name="matName" type="textarea"  title="主题" autofocus placeholder="想个好标题吧！" />
+    <i-input name="matContent" type="textarea" class="content" title="内容" placeholder="~创意的寻求者也是创意的生产者~" />  
+    <text >\n</text>
+  <text >\n</text>
+      <button class='btn' formType="submit">修改</button>    
+</form> 
+
+
