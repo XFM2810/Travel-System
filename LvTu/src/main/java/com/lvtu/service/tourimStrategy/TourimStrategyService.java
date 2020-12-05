@@ -5,6 +5,7 @@ import com.lvtu.domain.VO.TourimStrategyVO;
 import com.lvtu.entity.TourimStrategy;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author XuMeiFeng
@@ -22,8 +23,7 @@ public interface TourimStrategyService {
 
   public void showStrategy(int strategyId);
 
-  public List<TourimStrategyListVO> getStrategyListByAddress(
-      String city, int currentPage, int pageSize);
+  public Map getStrategyListByAddress(String city, int currentPage, int pageSize);
 
   public List<TourimStrategyListVO> getStrategyListOfUserRelease(int userId);
 

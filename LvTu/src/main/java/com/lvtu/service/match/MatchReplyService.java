@@ -15,4 +15,6 @@ public interface MatchReplyService {
   public void deleteReply(int matReplyId);
 
   public List<MatReply> getReplyList(int id, int flag);
+
+  public void updateReplyStatus(int replyId, int flag);
 }

@@ -1,6 +1,5 @@
 package com.lvtu.controller.match;
 
-import com.lvtu.domain.VO.MatchListVO;
 import com.lvtu.entity.Mat;
 import com.lvtu.response.CommonReturnType;
 import com.lvtu.response.error.BusinessException;
@@ -11,8 +10,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author XuMeiFeng
@@ -80,8 +77,8 @@ public class MatchController {
       @RequestParam("currentPage") Integer currentPage,
       @RequestParam("pageSize") Integer pageSize)
       throws BusinessException {
-    List<MatchListVO> data = matchService.getMatchListOfUser(userId, currentPage, pageSize, 0);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(
+        matchService.getMatchListOfUser(userId, currentPage, pageSize, 0));
   }
 
   /*
@@ -101,8 +98,8 @@ public class MatchController {
       @RequestParam("currentPage") Integer currentPage,
       @RequestParam("pageSize") Integer pageSize)
       throws BusinessException {
-    List<MatchListVO> data = matchService.getMatchListOfUser(userId, currentPage, pageSize, 1);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(
+        matchService.getMatchListOfUser(userId, currentPage, pageSize, 1));
   }
   /*
    * @Author XuMeiFeng
@@ -121,8 +118,7 @@ public class MatchController {
       @RequestParam("currentPage") Integer currentPage,
       @RequestParam("pageSize") Integer pageSize)
       throws BusinessException {
-    List<MatchListVO> data = matchService.getMatchOfCity(city, currentPage, pageSize);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(matchService.getMatchOfCity(city, currentPage, pageSize));
   }
 
   /*
@@ -143,8 +139,7 @@ public class MatchController {
       @RequestParam("pageSize") Integer pageSize)
       throws BusinessException {
     keyword = (keyword == null) ? null : "%" + keyword + "%";
-    List<MatchListVO> data = matchService.getMatchByKeyword(keyword, currentPage, pageSize);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(matchService.getMatchByKeyword(keyword, currentPage, pageSize));
   }
   /*
    * @Author XuMeiFeng

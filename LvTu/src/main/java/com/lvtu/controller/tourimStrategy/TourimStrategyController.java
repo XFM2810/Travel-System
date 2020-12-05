@@ -109,9 +109,8 @@ public class TourimStrategyController {
       @RequestParam(name = "currentPage") Integer currentPage,
       @RequestParam(name = "pageSize") Integer pageSize)
       throws BusinessException {
-    List<TourimStrategyListVO> data =
-        tourimStrategyService.getStrategyListByAddress(city, currentPage, pageSize);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(
+        tourimStrategyService.getStrategyListByAddress(city, currentPage, pageSize));
   }
 
   /*
@@ -152,8 +151,7 @@ public class TourimStrategyController {
   @GetMapping("/getStrategyHotList")
   public CommonReturnType getStrategyHotList(@RequestParam(name = "city") String city)
       throws BusinessException {
-    List<TourimStrategyListVO> data = tourimStrategyService.getStrategyListByAddress(city, 1, 15);
-    return CommonReturnType.create(data);
+    return CommonReturnType.create(tourimStrategyService.getStrategyListByAddress(city, 1, 15));
   }
 
   /*

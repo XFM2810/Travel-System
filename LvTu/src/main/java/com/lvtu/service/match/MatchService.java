@@ -1,9 +1,8 @@
 package com.lvtu.service.match;
 
-import com.lvtu.domain.VO.MatchListVO;
 import com.lvtu.entity.Mat;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @author XuMeiFeng
@@ -17,11 +16,11 @@ public interface MatchService {
 
   public void deleteMatch(int matId);
 
-  public List<MatchListVO> getMatchListOfUser(int userId, int currentPage, int pageSize, int flag);
+  public Map getMatchListOfUser(int userId, int currentPage, int pageSize, int flag);
 
-  public List<MatchListVO> getMatchOfCity(String city, int currentPage, int pageSize);
+  public Map getMatchOfCity(String city, int currentPage, int pageSize);
 
-  public List<MatchListVO> getMatchByKeyword(String keyword, int currentPage, int pageSize);
+  public Map getMatchByKeyword(String keyword, int currentPage, int pageSize);
 
   public Mat getMatchInfo(int matId);
 }

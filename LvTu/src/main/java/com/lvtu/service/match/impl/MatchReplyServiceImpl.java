@@ -39,4 +39,12 @@ public class MatchReplyServiceImpl implements MatchReplyService {
     List<MatReply> matReplyList = matReplyMapper.getReplyList(map);
     return matReplyList;
   }
+
+  @Override
+  public void updateReplyStatus(int replyId, int flag) {
+    MatReply matReply = new MatReply();
+    matReply.setReplyId(replyId);
+    matReply.setStatus(flag);
+    matReplyMapper.updateByPrimaryKeySelective(matReply);
+  }
 }

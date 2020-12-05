@@ -1,6 +1,7 @@
 package com.lvtu.service.user.impl;
 
 import com.lvtu.mapper.UserMapper;
+import com.lvtu.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,6 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
   @Autowired private UserMapper userMapper;
 }

@@ -89,4 +89,32 @@ public class MatchReplyController {
     List<MatReply> matReplyList = matchReplyService.getReplyList(matId, 2);
     return CommonReturnType.create(matReplyList);
   }
+
+  /*
+   * @Author XuMeiFeng
+   * @Description 同意申请
+   * @Date 17:23 2020/12/5
+   */
+  @ApiOperation("同意申请")
+  @ApiImplicitParam(name = "replyId", value = "申请ID", required = true)
+  @PostMapping("/passReply")
+  public CommonReturnType passReply(@RequestParam("replyId") Integer replyId)
+      throws BusinessException {
+    matchReplyService.updateReplyStatus(replyId, 1);
+    return CommonReturnType.create(null);
+  }
+
+  /*
+   * @Author XuMeiFeng
+   * @Description 拒绝申请
+   * @Date 17:23 2020/12/5
+   */
+  @ApiOperation("拒绝申请")
+  @ApiImplicitParam(name = "replyId", value = "申请ID", required = true)
+  @PostMapping("/rejectReply")
+  public CommonReturnType rejectReply(@RequestParam("replyId") Integer replyId)
+      throws BusinessException {
+    matchReplyService.updateReplyStatus(replyId, 2);
+    return CommonReturnType.create(null);
+  }
 }

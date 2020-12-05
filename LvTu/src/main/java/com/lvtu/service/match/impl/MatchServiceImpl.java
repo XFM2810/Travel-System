@@ -5,6 +5,7 @@ import com.lvtu.domain.VO.MatchListVO;
 import com.lvtu.entity.Mat;
 import com.lvtu.mapper.MatMapper;
 import com.lvtu.service.match.MatchService;
+import com.lvtu.utils.MyPageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,33 +39,33 @@ public class MatchServiceImpl implements MatchService {
   }
 
   @Override
-  public List<MatchListVO> getMatchListOfUser(int userId, int currentPage, int pageSize, int flag) {
+  public Map getMatchListOfUser(int userId, int currentPage, int pageSize, int flag) {
     PageHelper.startPage(currentPage, pageSize);
     Map<String, Object> map = new LinkedHashMap<>();
     map.put("userId", userId);
     map.put("flag", flag);
     List<Mat> matList = matMapper.getMatchList(map);
-    return convert(matList);
+    return MyPageHelper.returnPage(matList, convert(matList), "matList");
   }
 
   @Override
-  public List<MatchListVO> getMatchOfCity(String city, int currentPage, int pageSize) {
+  public Map getMatchOfCity(String city, int currentPage, int pageSize) {
     PageHelper.startPage(currentPage, pageSize);
     Map<String, Object> map = new LinkedHashMap<>();
     map.put("city", city);
     map.put("flag", 2);
     List<Mat> matList = matMapper.getMatchList(map);
-    return convert(matList);
+    return MyPageHelper.returnPage(matList, convert(matList), "matList");
   }
 
   @Override
-  public List<MatchListVO> getMatchByKeyword(String keyword, int currentPage, int pageSize) {
+  public Map getMatchByKeyword(String keyword, int currentPage, int pageSize) {
     PageHelper.startPage(currentPage, pageSize);
     Map<String, Object> map = new LinkedHashMap<>();
     map.put("keyword", keyword);
     map.put("flag", 3);
     List<Mat> matList = matMapper.getMatchList(map);
-    return convert(matList);
+    return MyPageHelper.returnPage(matList, convert(matList), "matList");
   }
 
   @Override

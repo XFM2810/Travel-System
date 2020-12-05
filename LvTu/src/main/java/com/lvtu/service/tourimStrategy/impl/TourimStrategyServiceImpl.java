@@ -6,6 +6,7 @@ import com.lvtu.domain.VO.TourimStrategyVO;
 import com.lvtu.entity.TourimStrategy;
 import com.lvtu.mapper.TourimStrategyMapper;
 import com.lvtu.service.tourimStrategy.TourimStrategyService;
+import com.lvtu.utils.MyPageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,10 +58,11 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
   }
 
   @Override
-  public List<TourimStrategyListVO> getStrategyListByAddress(
-      String city, int currentPage, int pageSize) {
+  public Map getStrategyListByAddress(String city, int currentPage, int pageSize) {
     PageHelper.startPage(currentPage, pageSize);
-    return convert(tourimStrategyMapper.getStrategyListByAddress(city));
+    List<TourimStrategy> tourimStrategyList = tourimStrategyMapper.getStrategyListByAddress(city);
+    return MyPageHelper.returnPage(
+        tourimStrategyList, convert(tourimStrategyList), "tourimStrategyList");
   }
 
   @Override
