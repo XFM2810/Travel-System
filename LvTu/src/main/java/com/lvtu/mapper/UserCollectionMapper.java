@@ -3,6 +3,8 @@ package com.lvtu.mapper;
 import com.lvtu.entity.UserCollection;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 public interface UserCollectionMapper {
   int deleteByPrimaryKey(Integer collectionId);
@@ -16,4 +18,6 @@ public interface UserCollectionMapper {
   int updateByPrimaryKeySelective(UserCollection record);
 
   int updateByPrimaryKey(UserCollection record);
+
+  int getCollectionId(Map map);
 }

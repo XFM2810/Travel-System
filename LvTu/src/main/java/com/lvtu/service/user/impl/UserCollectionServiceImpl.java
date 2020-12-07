@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author XuMeiFeng
@@ -23,11 +25,16 @@ public class UserCollectionServiceImpl implements UserCollectionService {
   @Override
   public void collectionStrategy(int strategyCollections, UserCollection userCollection) {
     userCollection.setCreateTime(new Date());
-    userCollectionMapper.insertSelective(userCollection);
-    TourimStrategy tourimStrategy = new TourimStrategy();
-    tourimStrategy.setStrategyId(userCollection.getStrategyId());
-    tourimStrategy.setStrategyCollections(strategyCollections + 1);
-    tourimStrategyMapper.updateByPrimaryKeySelective(tourimStrategy);
+    Map<String, Object> map = new LinkedHashMap<>();
+    map.put("strategyId", userCollection.getStrategyId());
+    map.put("userId", userCollection.getUserId());
+    if (userCollectionMapper.getCollectionId(map) + "" == "") {
+      userCollectionMapper.insertSelective(userCollection);
+      TourimStrategy tourimStrategy = new TourimStrategy();
+      tourimStrategy.setStrategyId(userCollection.getStrategyId());
+      tourimStrategy.setStrategyCollections(strategyCollections + 1);
+      tourimStrategyMapper.updateByPrimaryKeySelective(tourimStrategy);
+    }
   }
 
   @Override

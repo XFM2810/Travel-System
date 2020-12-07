@@ -5,6 +5,7 @@ import com.lvtu.domain.VO.TourimStrategyListVO;
 import com.lvtu.domain.VO.TourimStrategyVO;
 import com.lvtu.entity.TourimStrategy;
 import com.lvtu.mapper.TourimStrategyMapper;
+import com.lvtu.mapper.UserCollectionMapper;
 import com.lvtu.service.tourimStrategy.TourimStrategyService;
 import com.lvtu.utils.MyPageHelper;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +22,7 @@ import java.util.*;
 @Service
 public class TourimStrategyServiceImpl implements TourimStrategyService {
   @Autowired private TourimStrategyMapper tourimStrategyMapper;
+  @Autowired private UserCollectionMapper userCollectionMapper;
 
   @Override
   public void releaseStrategy(TourimStrategy tourimStrategy) {
@@ -76,11 +78,21 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
   }
 
   @Override
-  public TourimStrategyVO getStrategyInfo(int strategyId) {
+  public Map getStrategyInfo(Map map) {
     TourimStrategyVO tourimStrategyVO = new TourimStrategyVO();
-    TourimStrategy tourimStrategy = tourimStrategyMapper.selectByPrimaryKey(strategyId);
+    TourimStrategy tourimStrategy =
+        tourimStrategyMapper.selectByPrimaryKey((Integer) map.get("strategyId"));
     BeanUtils.copyProperties(tourimStrategy, tourimStrategyVO);
-    return tourimStrategyVO;
+    Map<String, Object> returnMap = new LinkedHashMap<>();
+    returnMap.put("tourimStrategy", tourimStrategyVO);
+    Integer collectionId;
+    try {
+      collectionId = userCollectionMapper.getCollectionId(map);
+    } catch (Exception e) {
+      collectionId = null;
+    }
+    returnMap.put("collectionId", collectionId);
+    return returnMap;
   }
 
   @Override

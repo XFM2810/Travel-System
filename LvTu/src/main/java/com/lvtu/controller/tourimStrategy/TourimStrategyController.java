@@ -1,7 +1,6 @@
 package com.lvtu.controller.tourimStrategy;
 
 import com.lvtu.domain.VO.TourimStrategyListVO;
-import com.lvtu.domain.VO.TourimStrategyVO;
 import com.lvtu.entity.TourimStrategy;
 import com.lvtu.response.CommonReturnType;
 import com.lvtu.response.error.BusinessException;
@@ -13,7 +12,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author XuMeiFeng
@@ -160,12 +161,19 @@ public class TourimStrategyController {
    * @Date 19:10 2020/11/20
    */
   @ApiOperation("获取攻略详细信息")
-  @ApiImplicitParam(name = "strategyId", value = "攻略ID", required = true)
+  @ApiImplicitParams({
+    @ApiImplicitParam(name = "strategyId", value = "攻略ID", required = true),
+    @ApiImplicitParam(name = "userId", value = "用户ID", required = true)
+  })
   @GetMapping("/getStrategyInfo")
-  public CommonReturnType getStrategyInfo(@RequestParam(name = "strategyId") Integer strategyId)
+  public CommonReturnType getStrategyInfo(
+      @RequestParam(name = "strategyId") Integer strategyId,
+      @RequestParam(name = "userId") Integer userId)
       throws BusinessException {
-    TourimStrategyVO data = tourimStrategyService.getStrategyInfo(strategyId);
-    return CommonReturnType.create(data);
+    Map<String, Integer> map = new LinkedHashMap<>();
+    map.put("strategyId", strategyId);
+    map.put("userId", userId);
+    return CommonReturnType.create(tourimStrategyService.getStrategyInfo(map));
   }
 
   /*

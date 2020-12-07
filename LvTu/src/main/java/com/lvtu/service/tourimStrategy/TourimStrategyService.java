@@ -1,7 +1,6 @@
 package com.lvtu.service.tourimStrategy;
 
 import com.lvtu.domain.VO.TourimStrategyListVO;
-import com.lvtu.domain.VO.TourimStrategyVO;
 import com.lvtu.entity.TourimStrategy;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public interface TourimStrategyService {
 
   public List<TourimStrategyListVO> getStrategyListOfUserCollection(int userId);
 
-  public TourimStrategyVO getStrategyInfo(int strategyId);
+  public Map getStrategyInfo(Map map);
 
   public void shareStrategy(TourimStrategy tourimStrategy);
 }
