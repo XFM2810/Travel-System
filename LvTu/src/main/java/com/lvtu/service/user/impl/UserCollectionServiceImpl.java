@@ -28,7 +28,13 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     Map<String, Object> map = new LinkedHashMap<>();
     map.put("strategyId", userCollection.getStrategyId());
     map.put("userId", userCollection.getUserId());
-    if (userCollectionMapper.getCollectionId(map) + "" == "") {
+    Integer collectionId;
+    try {
+      collectionId = userCollectionMapper.getCollectionId(map);
+    } catch (Exception e) {
+      collectionId = null;
+    }
+    if (collectionId == null) {
       userCollectionMapper.insertSelective(userCollection);
       TourimStrategy tourimStrategy = new TourimStrategy();
       tourimStrategy.setStrategyId(userCollection.getStrategyId());
