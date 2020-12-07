@@ -62,7 +62,9 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
   @Override
   public Map getStrategyListByAddress(String city, int currentPage, int pageSize) {
     PageHelper.startPage(currentPage, pageSize);
-    List<TourimStrategy> tourimStrategyList = tourimStrategyMapper.getStrategyListByAddress(city);
+    Map map = new LinkedHashMap();
+    map.put("city", city);
+    List<TourimStrategy> tourimStrategyList = tourimStrategyMapper.getStrategyListByAddress(map);
     return MyPageHelper.returnPage(
         tourimStrategyList, convert(tourimStrategyList), "tourimStrategyList");
   }
@@ -99,6 +101,14 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
   public void shareStrategy(TourimStrategy tourimStrategy) {
     tourimStrategy.setStrategyShares(tourimStrategy.getStrategyShares() + 1);
     tourimStrategyMapper.updateByPrimaryKeySelective(tourimStrategy);
+  }
+
+  @Override
+  public Map queryStrategy(Map map, int currentPage, int pageSize) {
+    PageHelper.startPage(currentPage, pageSize);
+    List<TourimStrategy> tourimStrategyList = tourimStrategyMapper.getStrategyListByAddress(map);
+    return MyPageHelper.returnPage(
+        tourimStrategyList, convert(tourimStrategyList), "tourimStrategyList");
   }
 
   private List<TourimStrategyListVO> convert(List<TourimStrategy> tourimStrategyList) {

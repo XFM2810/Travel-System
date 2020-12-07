@@ -1,5 +1,6 @@
 package com.lvtu.domain.VO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -19,5 +20,6 @@ public class MatchListVO {
 
   private String matPlace;
 
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
   private Date createTime;
 }

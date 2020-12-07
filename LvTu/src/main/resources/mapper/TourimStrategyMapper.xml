@@ -25,11 +25,16 @@
         from tourim_strategy
         where strategy_id = #{strategyId,jdbcType=INTEGER}
     </select>
-    <select id="getStrategyListByAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="getStrategyListByAddress" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
-         strategy_id, strategy_name, strategy_content
+        strategy_id, strategy_name, strategy_content,create_time,strategy_shares,strategy_collections
         from tourim_strategy
-        where city = #{city,jdbcType=VARCHAR}
+        <where>
+            city = #{city,jdbcType=VARCHAR}
+            <if test="keyword!=null">
+                and strategy_content like #{keyword,jdbcType=VARCHAR}
+            </if>
+        </where>
         order by strategy_collections desc
     </select>
     <select id="getStrategyListOfUserRelease" parameterType="java.lang.Integer" resultMap="BaseResultMap">

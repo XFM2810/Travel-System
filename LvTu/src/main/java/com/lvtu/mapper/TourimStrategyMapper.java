@@ -18,7 +18,7 @@ public interface TourimStrategyMapper {
 
   int updateStrategyStatus(Map<String, Integer> map);
 
-  List<TourimStrategy> getStrategyListByAddress(String city);
+  List<TourimStrategy> getStrategyListByAddress(Map map);
 
   List<TourimStrategy> getStrategyListOfUserRelease(int userId);
 

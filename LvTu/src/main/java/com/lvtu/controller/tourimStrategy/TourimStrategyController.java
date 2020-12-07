@@ -188,4 +188,28 @@ public class TourimStrategyController {
     tourimStrategyService.shareStrategy(tourimStrategy);
     return CommonReturnType.create(null);
   }
+  /*
+   * @Author XuMeiFeng
+   * @Description 关键字查询
+   * @Date 17:10 2020/12/7
+   */
+  @ApiOperation("关键字查询(当前城市)")
+  @ApiImplicitParams({
+    @ApiImplicitParam(name = "city", value = "城市", required = true),
+    @ApiImplicitParam(name = "keyword", value = "关键字", required = true),
+    @ApiImplicitParam(name = "currentPage", value = "当前页数", required = true),
+    @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true)
+  })
+  @GetMapping("/queryStrategy")
+  public CommonReturnType queryStrategy(
+      @RequestParam(name = "city") String city,
+      @RequestParam(name = "keyword") String keyword,
+      @RequestParam("currentPage") Integer currentPage,
+      @RequestParam("pageSize") Integer pageSize)
+      throws BusinessException {
+    Map map = new LinkedHashMap();
+    map.put("city", city);
+    map.put("keyword", "%" + keyword + "%");
+    return CommonReturnType.create(tourimStrategyService.queryStrategy(map, currentPage, pageSize));
+  }
 }

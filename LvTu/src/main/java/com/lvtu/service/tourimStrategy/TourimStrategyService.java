@@ -31,4 +31,6 @@ public interface TourimStrategyService {
   public Map getStrategyInfo(Map map);
 
   public void shareStrategy(TourimStrategy tourimStrategy);
+
+  public Map queryStrategy(Map map, int currentPage, int pageSize);
 }
