@@ -15,7 +15,7 @@ public class TourimStrategy {
 
   private String strategyContent;
 
-  private String strategyWay;
+  private Object strategyWay;
 
   private String strategyPicture;
 

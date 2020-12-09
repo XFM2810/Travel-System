@@ -20,7 +20,7 @@ public class TourimStrategyVO {
 
   private String strategyContent;
 
-  private String strategyWay;
+  private Object strategyWay;
 
   private String strategyPicture;
 

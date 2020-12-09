@@ -7,6 +7,7 @@ import com.lvtu.entity.TourimStrategy;
 import com.lvtu.mapper.TourimStrategyMapper;
 import com.lvtu.mapper.UserCollectionMapper;
 import com.lvtu.service.tourimStrategy.TourimStrategyService;
+import com.lvtu.utils.JSONFormat;
 import com.lvtu.utils.MyPageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
   public void releaseStrategy(TourimStrategy tourimStrategy) {
     tourimStrategy.setCreateTime(new Date());
     tourimStrategy.setUpdateTime(new Date());
+    tourimStrategy.setStrategyWay(JSONFormat.jsonToString(tourimStrategy.getStrategyWay()));
     tourimStrategyMapper.insertSelective(tourimStrategy);
   }
 
@@ -86,6 +88,7 @@ public class TourimStrategyServiceImpl implements TourimStrategyService {
         tourimStrategyMapper.selectByPrimaryKey((Integer) map.get("strategyId"));
     BeanUtils.copyProperties(tourimStrategy, tourimStrategyVO);
     Map<String, Object> returnMap = new LinkedHashMap<>();
+    tourimStrategyVO.setStrategyWay(JSONFormat.stringToJson(tourimStrategyVO.getStrategyWay()));
     returnMap.put("tourimStrategy", tourimStrategyVO);
     Integer collectionId;
     try {
