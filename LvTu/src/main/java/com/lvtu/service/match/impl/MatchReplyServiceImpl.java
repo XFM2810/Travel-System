@@ -1,5 +1,6 @@
 package com.lvtu.service.match.impl;
 
+import com.lvtu.domain.DTO.MatAndUser;
 import com.lvtu.entity.MatReply;
 import com.lvtu.mapper.MatReplyMapper;
 import com.lvtu.service.match.MatchReplyService;
@@ -32,11 +33,11 @@ public class MatchReplyServiceImpl implements MatchReplyService {
   }
 
   @Override
-  public List<MatReply> getReplyList(int id, int flag) {
+  public List<MatAndUser> getReplyList(int id, int flag) {
     Map<String, Integer> map = new LinkedHashMap<>();
     map.put("id", id);
     map.put("flag", flag);
-    List<MatReply> matReplyList = matReplyMapper.getReplyList(map);
+    List<MatAndUser> matReplyList = matReplyMapper.getReplyList(map);
     return matReplyList;
   }
 

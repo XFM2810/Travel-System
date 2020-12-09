@@ -1,5 +1,6 @@
 package com.lvtu.mapper;
 
+import com.lvtu.domain.DTO.MatAndUser;
 import com.lvtu.entity.MatReply;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,5 @@ public interface MatReplyMapper {
 
   int updateByPrimaryKey(MatReply record);
 
-  List<MatReply> getReplyList(Map<String, Integer> map);
+  List<MatAndUser> getReplyList(Map<String, Integer> map);
 }

@@ -10,8 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * @author XuMeiFeng
  * @create 2020/11/22 21:08
@@ -59,8 +57,7 @@ public class MatchReplyController {
   @GetMapping("/getReplyListOfUser")
   public CommonReturnType getReplyListOfUser(@RequestParam("userId") Integer userId)
       throws BusinessException {
-    List<MatReply> matReplyList = matchReplyService.getReplyList(userId, 0);
-    return CommonReturnType.create(matReplyList);
+    return CommonReturnType.create(matchReplyService.getReplyList(userId, 0));
   }
   /*
    * @Author XuMeiFeng
@@ -72,8 +69,7 @@ public class MatchReplyController {
   @GetMapping("/getReplyListPassed")
   public CommonReturnType getReplyListPassed(@RequestParam("matId") Integer matId)
       throws BusinessException {
-    List<MatReply> matReplyList = matchReplyService.getReplyList(matId, 1);
-    return CommonReturnType.create(matReplyList);
+    return CommonReturnType.create(matchReplyService.getReplyList(matId, 1));
   }
 
   /*
@@ -86,8 +82,7 @@ public class MatchReplyController {
   @GetMapping("/getReplyListUntreated")
   public CommonReturnType getReplyListUntreated(@RequestParam("matId") Integer matId)
       throws BusinessException {
-    List<MatReply> matReplyList = matchReplyService.getReplyList(matId, 2);
-    return CommonReturnType.create(matReplyList);
+    return CommonReturnType.create(matchReplyService.getReplyList(matId, 2));
   }
 
   /*

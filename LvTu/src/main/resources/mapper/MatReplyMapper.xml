@@ -9,13 +9,23 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
     </resultMap>
+    <resultMap id="MatAndUserResultMap" type="com.lvtu.domain.DTO.MatAndUser">
+        <id column="reply_id" jdbcType="INTEGER" property="replyId"/>
+        <result column="mat_id" jdbcType="INTEGER" property="matId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="reply_content" jdbcType="VARCHAR" property="replyContent"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
     <sql id="Base_Column_List">
     reply_id, mat_id, user_id, reply_content, create_time, status
   </sql>
-    <select id="getReplyList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <select id="getReplyList" parameterType="java.util.Map" resultMap="MatAndUserResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from mat_reply
+        reply_id, mat_id, a.user_id, reply_content, a.create_time, status,icon
+        from mat_reply as a
+        left join user as b on a.user_id=b.user_id
         <where>
             <if test="flag==0">
                 and user_id=#{id,jdbcType=INTEGER}
