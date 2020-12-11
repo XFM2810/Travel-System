@@ -28,7 +28,7 @@
         left join user as b on a.user_id=b.user_id
         <where>
             <if test="flag==0">
-                and user_id=#{id,jdbcType=INTEGER}
+                and a.user_id=#{id,jdbcType=INTEGER}
             </if>
             <if test="flag==1">
                 and mat_id=#{id,jdbcType=INTEGER} and status=1
